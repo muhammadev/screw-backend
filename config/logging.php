@@ -85,7 +85,6 @@ return [
         'papertrail' => [
             'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),
-            // 'url' => env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             'processors' => [PsrLogMessageProcessor::class],
         ],
 
