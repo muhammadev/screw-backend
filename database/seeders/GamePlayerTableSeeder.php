@@ -25,6 +25,7 @@ class GamePlayerTableSeeder extends Seeder
             // Insert data into the `game_player` table
             DB::table('game_player')->insert([
                 'id'        => $row['id'],
+                'game_id' => $row['game_id'],
                 'player_id' => $row['player_id'],
                 'score'     => $row['score'],
                 'winner'    => $row['winner'],
