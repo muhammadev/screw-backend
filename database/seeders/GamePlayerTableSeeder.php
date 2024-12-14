@@ -14,7 +14,7 @@ class GamePlayerTableSeeder extends Seeder
     public function run(): void
     {
         // Path to your CSV file
-        $csvFilePath = base_path('database/seeders/data/game_player-table.csv');
+        $csvFilePath = base_path('database/seeders/data/game-player-table.csv');
 
         // Read the CSV file using League\Csv\Reader
         $csv = Reader::createFromPath($csvFilePath, 'r');
