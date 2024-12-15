@@ -9,8 +9,6 @@ class GamePlayer extends Pivot
 {
     use HasFactory;
 
-    protected $primaryKey = "game_player_id";
-
     protected $fillable = [
         "game_id",
         "player_id",
