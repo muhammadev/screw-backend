@@ -52,9 +52,11 @@ class updateGameWinnerAndScrewed extends Command
 
         foreach ($players as $player) {
             $game->players()->updateExistingPivot($player->id, [
-                'winner' => $player->score === $minScore,
-                'screwed' => $player->score === $maxScore
+                'winner' => $player->pivot->score === $minScore,
+                'screwed' => $player->pivot->score === $maxScore
             ]);
+
+            $this->info("$minScore, $maxScore");
         }
     }
 }

@@ -12,7 +12,13 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        return response()->json(Player::all());
+        $players = Player::withCount([
+            'games',
+            'games as winner_count' => fn($query) => $query->where('winner', true),
+            'games as screwed_count' => fn($query) => $query->where('screwed', true)
+        ])->withAvg('games as score_avg', 'game_player.score')->get();
+
+        return response()->json($players);
     }
 
     /**
