@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('game_player', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_id')->constrained()->onDelete('cascade');  // Foreign key to the games table
-            $table->foreignId('player_id')->constrained()->onDelete('cascade'); // Foreign key to the players table
             $table->integer('score')->default(0);
             $table->boolean('winner')->default(0);
             $table->boolean('screwed')->default(0);
