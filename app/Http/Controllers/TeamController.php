@@ -12,7 +12,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return response()->json(Team::all());
+        return response()->json(Team::with(['players', 'games'])->get());
     }
 
     /**
@@ -28,7 +28,20 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'players' => 'required|array',
+            'players.*' => 'exists:players,id'
+        ]);
+
+        $team = Team::create(['name' => $validated['name']]);
+
+        $team->players()->attach($validated['players']);
+
+        return response()->json([
+            'message' => 'Team created successfully!',
+            'team' => $team->load('players')
+        ]);
     }
 
     /**
@@ -52,7 +65,20 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'players' => 'required|array',
+            'players.*' => 'exists:players,id'
+        ]);
+
+        $team->update(['name' => $validated['name']]);
+
+        $team->players()->sync($validated['players']);
+
+        return response()->json([
+            'message' => 'Team updated successfully!',
+            'team' => $team->load('players')
+        ]);
     }
 
     /**
