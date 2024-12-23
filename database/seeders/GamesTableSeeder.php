@@ -23,9 +23,10 @@ class GamesTableSeeder extends Seeder
         // Loop through each record and insert into the database
         foreach ($csv as $record) {
             DB::table('games')->insert([
-                'id'         => $record['id'],
-                'created_at' => $record['created_at'],
-                'updated_at' => $record['updated_at'],
+                'id'           => $record['id'],
+                'game_type_id' => $record['game_type_id'],
+                'created_at'   => $record['created_at'],
+                'updated_at'   => $record['updated_at'],
             ]);
         }
     }
