@@ -25,7 +25,6 @@ class PlayersTableSeeder extends Seeder
             DB::table('players')->insert([
                 'id'         => $record['id'],
                 'name'       => $record['name'],
-                'team_id'    => $record['team_id'],
                 'created_at' => $record['created_at'],
                 'updated_at' => $record['updated_at'],
             ]);
